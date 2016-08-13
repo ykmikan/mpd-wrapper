@@ -1,4 +1,5 @@
 import mpd from 'mpd'
+import Controller from './controller'
 
 class MPD {
   constructor(port = 6600, host = 'localhost') {
@@ -11,30 +12,15 @@ class MPD {
     })
 
     this.cmd = mpd.cmd
+    this.controller = new Controller(this.client)
   }
 
   play() {
-    return new Promise((resolve, reject) => {
-      this.client.sendCommand(this.cmd('play', []), err => {
-        if (err) {
-          reject(err)
-        }
-
-        resolve(true)
-      })
-    })
+    return this.controller.play()
   }
 
   stop() {
-    return new Promise((resolve, reject) => {
-      this.client.sendCommand(this.cmd('stop', []), err => {
-        if (err) {
-          reject(err)
-        }
-
-        resolve(true)
-      })
-    })
+    return this.controller.stop()
   }
 
   playlistAdd(uri) {

@@ -1,0 +1,1 @@
+Mpd-wrapper is a promise-based mpd.js wrapper.
