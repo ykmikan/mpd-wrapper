@@ -1,0 +1,25 @@
+{
+  "extends": "airbnb",
+  "rules": {
+    "new-cap": 0,
+    "max-len": 0,
+    "comma-dangle": 0,
+    "space-before-function-paren": 0,
+    "semi" : [2 , "never"],
+    "prefer-const": 0,
+    "no-param-reassign": 0,
+    "no-underscore-dangle": 0,
+    "import/no-unresolved": 0,
+    "no-eval": 1,
+    "func-names": 0,
+    "no-use-before-define": 0,
+  },
+  "parser": "babel-eslint",
+  "env": {
+    "es6": true,
+    "node": true,
+    "browser": true
+  },
+  "globals": {
+  }
+}
