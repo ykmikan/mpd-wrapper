@@ -1,5 +1,6 @@
 import mpd from 'mpd'
 import Controller from './controller'
+import Playlist from './playlist'
 
 class MPD {
   constructor(port = 6600, host = 'localhost') {
@@ -13,6 +14,7 @@ class MPD {
 
     this.cmd = mpd.cmd
     this.controller = new Controller(this.client)
+    this.playlist = new Playlist(this.client)
   }
 
   play() {
@@ -27,16 +29,17 @@ class MPD {
     return this.controller.updateDB()
   }
 
-  playlistAdd(uri) {
-    return new Promise((resolve, reject) => {
-      this.client.sendCommand(this.cmd('add', [uri]), err => {
-        if (err) {
-          reject(err)
+  addToPlaylist(uri, isUpdateDB = true) {
+    return async () => {
+      try {
+        if (isUpdateDB) {
+          await this.controller.updateDB()
         }
-
-        resolve(true)
-      })
-    })
+        return await this.playlist.add(uri)
+      } catch (err) {
+        throw new Error(err)
+      }
+    }
   }
 
   listall() {
