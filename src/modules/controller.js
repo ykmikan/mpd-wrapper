@@ -31,8 +31,15 @@ class Controller {
   }
 
   updateDB(path) {
+    let args
+    if (Array.isArray(path)) {
+      args = path
+    } else {
+      args = [path]
+    }
+
     return new Promise((resolve, reject) => {
-      this.mpd.sendCommand(this.cmd('update', path), (err, result) => {
+      this.mpd.sendCommand(this.cmd('update', args), (err, result) => {
         if (err) {
           reject(err)
         }
