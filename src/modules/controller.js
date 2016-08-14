@@ -1,6 +1,8 @@
+import mpd from 'mpd'
+
 class Controller {
-  constructor(mpd) {
-    this.mpd = mpd
+  constructor(mpdClient) {
+    this.mpd = mpdClient
     this.cmd = mpd.cmd
   }
 
