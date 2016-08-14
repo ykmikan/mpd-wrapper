@@ -32,7 +32,9 @@ class Controller {
 
   updateDB(path) {
     let args
-    if (Array.isArray(path)) {
+    if (!path) {
+      args = []
+    } else if (Array.isArray(path)) {
       args = path
     } else {
       args = [path]
