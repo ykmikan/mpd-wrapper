@@ -6,7 +6,7 @@ class Controller {
 
   play() {
     return new Promise((resolve, reject) => {
-      this.client.sendCommand(this.cmd('play', []), err => {
+      this.mpd.sendCommand(this.cmd('play', []), err => {
         if (err) {
           reject(err)
         }
@@ -18,7 +18,7 @@ class Controller {
 
   stop() {
     return new Promise((resolve, reject) => {
-      this.client.sendCommand(this.cmd('stop', []), err => {
+      this.mpd.sendCommand(this.cmd('stop', []), err => {
         if (err) {
           reject(err)
         }
@@ -30,7 +30,7 @@ class Controller {
 
   updateDB(path) {
     return new Promise((resolve, reject) => {
-      this.client.sendCommand(this.cmd('update', path), (err, result) => {
+      this.mpd.sendCommand(this.cmd('update', path), (err, result) => {
         if (err) {
           reject(err)
         }
