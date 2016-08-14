@@ -15,6 +15,30 @@ class Controller {
       })
     })
   }
+
+  stop() {
+    return new Promise((resolve, reject) => {
+      this.client.sendCommand(this.cmd('stop', []), err => {
+        if (err) {
+          reject(err)
+        }
+
+        resolve(true)
+      })
+    })
+  }
+
+  updateDB(path) {
+    return new Promise((resolve, reject) => {
+      this.client.sendCommand(this.cmd('update', path), (err, result) => {
+        if (err) {
+          reject(err)
+        }
+
+        resolve(result)
+      })
+    })
+  }
 }
 
 export default Controller

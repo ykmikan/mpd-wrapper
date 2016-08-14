@@ -23,6 +23,10 @@ class MPD {
     return this.controller.stop()
   }
 
+  updateDB() {
+    return this.controller.updateDB()
+  }
+
   playlistAdd(uri) {
     return new Promise((resolve, reject) => {
       this.client.sendCommand(this.cmd('add', [uri]), err => {
@@ -47,18 +51,7 @@ class MPD {
     })
   }
 
-  update(uri) {
-    let args = uri ? [uri] : []
-    return new Promise((resolve, reject) => {
-      this.client.sendCommand(this.cmd('update', args), (err, result) => {
-        if (err) {
-          reject(err)
-        }
 
-        resolve(result)
-      })
-    })
-  }
 }
 
 export default MPD
