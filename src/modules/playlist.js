@@ -20,7 +20,7 @@ class Playlist {
         reject('uri type error. uri must be array or string.')
       }
 
-      this.client.sendCommand(this.cmd('add', args), err => {
+      this.mpd.sendCommand(this.cmd('add', args), err => {
         if (err) {
           reject(err)
         }
