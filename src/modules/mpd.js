@@ -40,6 +40,10 @@ class MPD {
     }
   }
 
+  clearPlaylist() {
+    return this.playlist.clear()
+  }
+
   listall() {
     return new Promise((resolve, reject) => {
       this.client.sendCommand(this.cmd('listall', []), (err, result) => {

@@ -25,11 +25,22 @@ class Playlist {
           reject(err)
         }
 
-        resolve(true)
+        resolve()
       })
     })
   }
 
+  clear() {
+    return new Promise((resolve, reject) => {
+      this.mpd.sendCommand(this.cmd('clear'), err => {
+        if (err) {
+          reject(err)
+        }
+
+        resolve()
+      })
+    })
+  }
 }
 
 export default Playlist
