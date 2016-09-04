@@ -25,14 +25,14 @@ class MPD {
     return this.controller.stop()
   }
 
-  updateDB() {
-    return this.controller.updateDB()
+  updateDB(uri) {
+    return this.controller.updateDB(uri)
   }
 
   async addToPlaylist(uri, isUpdateDB = true) {
     try {
       if (isUpdateDB) {
-        await this.controller.updateDB(uri)
+        await this.controller.updateDB()
       }
       return this.playlist.add(uri)
     } catch (err) {

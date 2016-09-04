@@ -33,7 +33,7 @@ class Controller {
   updateDB(path) {
     let args
     if (!path) {
-      args = []
+      args = ['']
     } else if (Array.isArray(path)) {
       args = path
     } else {
