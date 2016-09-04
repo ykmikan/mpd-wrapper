@@ -32,7 +32,7 @@ class MPD {
   async addToPlaylist(uri, isUpdateDB = true) {
     try {
       if (isUpdateDB) {
-        await this.controller.updateDB()
+        await this.controller.updateDB(uri)
       }
       return this.playlist.add(uri)
     } catch (err) {
