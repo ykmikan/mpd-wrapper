@@ -30,21 +30,9 @@ class Playlist {
     })
   }
 
-  clear(uri) {
+  clear() {
     return new Promise((resolve, reject) => {
-      let args
-
-      if (!uri) {
-        args = ['']
-      } else if (Array.isArray(uri)) {
-        args = uri
-      } else if (typeof uri === 'string') {
-        args = [uri]
-      } else {
-        reject('uri type error. uri must be array or string.')
-      }
-
-      this.mpd.sendCommand(this.cmd('clear', args), err => {
+      this.mpd.sendCommand(this.cmd('clear', []), err => {
         if (err) {
           reject(err)
         }
