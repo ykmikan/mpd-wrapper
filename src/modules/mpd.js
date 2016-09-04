@@ -40,8 +40,8 @@ class MPD {
     }
   }
 
-  clearPlaylist() {
-    return this.playlist.clear()
+  clearPlaylist(uri) {
+    return this.playlist.clear(uri)
   }
 
   listall() {
