@@ -6,27 +6,29 @@ class Playlist {
     this.cmd = mpd.cmd
   }
 
-  add(uri) {
+  add(uris) {
     return new Promise((resolve, reject) => {
       let args
 
-      if (!uri) {
-        reject('error occurred, required uri.')
-      } else if (Array.isArray(uri)) {
-        args = uri
-      } else if (typeof uri === 'string') {
-        args = [uri]
+      if (!uris) {
+        reject('error occurred, required uris.')
+      } else if (Array.isArray(uris)) {
+        args = uris
+      } else if (typeof uris === 'string') {
+        args = [uris]
       } else {
         reject('uri type error. uri must be array or string.')
       }
 
-      this.mpd.sendCommand(this.cmd('add', args), err => {
-        if (err) {
-          reject(err)
-        }
-
-        resolve()
+      args.forEach(arg => {
+        this.mpd.sendCommand(this.cmd('add', [arg]), err => {
+          if (err) {
+            reject(err)
+          }
+        })
       })
+
+      resolve()
     })
   }
 
