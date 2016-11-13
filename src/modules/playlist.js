@@ -6,8 +6,8 @@ class Playlist {
     this.cmd = mpd.cmd
   }
 
-  async add(uris) {
-    return new Promise((resolve, reject) => {
+  add(uris) {
+    return new Promise(async (resolve, reject) => {
       let args
 
       if (!uris) {
@@ -20,10 +20,9 @@ class Playlist {
         reject('uri type error. uri must be array or string.')
       }
 
-      for(var i = 0, length = args.length; i < length; i++) {
+      for (let i = 0, length = args.length; i < length; i++) {
         let arg = args[i]
-
-        result = await sendCommand('add', arg)
+        let result = await this._sendCommand('add', arg)
         console.log('result ', result)
       }
 
@@ -42,18 +41,18 @@ class Playlist {
       })
     })
   }
-}
 
-function sendCommand(cmd, arg) {
-  return new Promise((resolve, reject) => {
-    this.mpd.sendCommand(this.cmd(cmd, [arg]), err => {
-      if (err) {
-        reject(err)
-        return
-      }
-      resolve(true)
+  _sendCommand(cmd, arg) {
+    return new Promise((resolve, reject) => {
+      this.mpd.sendCommand(this.cmd(cmd, [arg]), err => {
+        if (err) {
+          reject(err)
+        } else {
+          resolve(true)
+        }
+      })
     })
-  })
+  }
 }
 
 export default Playlist
